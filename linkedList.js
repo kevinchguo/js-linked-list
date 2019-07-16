@@ -26,13 +26,11 @@ function linkedListGenerator() {
       } else {
         //if there is a head and tail then do this
         tail.next = newObj; // assigns new tail
-        tail = newObj; //assigns the
+        tail = newObj; //assigns the next key to null
       }
       return newObj;
     },
     get(number) {
-      //   console.log(head.next);
-      //   console.log(tail);
       let current = head; //head is head of linked-list
       let counter = 0; //counter is the index of where the node is (0 is the first head)
       if (number === 0) {
@@ -48,21 +46,16 @@ function linkedListGenerator() {
         return false;
       }
       return current; //gives me the node i want
-
-      //   console.log(counter);
     },
     remove(number) {
-      //num = 2 for example
       // find current head you want to remove, reassign previous to next head.
       let current = this.get(number); // 'this' refers to this module/function
       let previous = this.get(number - 1);
-      let next = this.get(number + 1);
       if (current === false) {
         return false;
       }
       if (number === 0) {
         head = head.next;
-        // console.log(head);
       } else {
         previous.next = current.next;
       }
@@ -70,6 +63,18 @@ function linkedListGenerator() {
         tail = previous;
       }
     },
-    insert(value, number) {}
+    insert(value, number) {
+      let newObj = this.add(value);
+      let current = this.get(number);
+      let previous = this.get(number - 1);
+
+      if (number === 0) {
+        newObj.next = current;
+        head = newObj;
+      } else {
+        newObj.next = current;
+        previous.next = newObj;
+      }
+    }
   };
 }
