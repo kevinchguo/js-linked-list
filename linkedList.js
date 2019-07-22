@@ -16,9 +16,11 @@ function linkedListGenerator() {
     },
     add(value) {
       //adds object, if theres no object, then sets object to default object
-      let newObj = {};
-      newObj.value = value;
-      newObj.next = null;
+      let newObj = {
+        value: value,
+        next: null
+      };
+
       if (!head && !tail) {
         // if theres no head or tail existing then add to defaultObj (head and tail is referenced to the same node)
         head = newObj;
@@ -67,10 +69,14 @@ function linkedListGenerator() {
       let newObj = this.add(value);
       let current = this.get(number);
       let previous = this.get(number - 1);
-
-      if (number === 0) {
+      if (number < 0) {
+        return false;
+      } else if (current === false) {
+        return false;
+      } else if (number === 0) {
         newObj.next = current;
         head = newObj;
+        return head;
       } else {
         newObj.next = current;
         previous.next = newObj;
