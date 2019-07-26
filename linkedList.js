@@ -66,7 +66,6 @@ function linkedListGenerator() {
       }
     },
     insert(value, number) {
-      let newObj = this.add(value);
       let current = this.get(number);
       let previous = this.get(number - 1);
       if (number < 0) {
@@ -74,10 +73,15 @@ function linkedListGenerator() {
       } else if (current === false) {
         return false;
       } else if (number === 0) {
+        let newObj = {
+          value: value
+        };
         newObj.next = current;
         head = newObj;
-        return head;
       } else {
+        let newObj = {
+          value: value
+        };
         newObj.next = current;
         previous.next = newObj;
       }
